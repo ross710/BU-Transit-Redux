@@ -1,0 +1,490 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9104D02919BBB15C00126FF5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9104D02819BBB15C00126FF5 /* Foundation.framework */; };
+		9104D02B19BBB15C00126FF5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9104D02A19BBB15C00126FF5 /* CoreGraphics.framework */; };
+		9104D02D19BBB15C00126FF5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9104D02C19BBB15C00126FF5 /* UIKit.framework */; };
+		9104D03319BBB15C00126FF5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9104D03119BBB15C00126FF5 /* InfoPlist.strings */; };
+		9104D03519BBB15C00126FF5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9104D03419BBB15C00126FF5 /* main.m */; };
+		9104D03919BBB15C00126FF5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9104D03819BBB15C00126FF5 /* AppDelegate.m */; };
+		9104D03C19BBB15C00126FF5 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9104D03A19BBB15C00126FF5 /* Main_iPhone.storyboard */; };
+		9104D03F19BBB15C00126FF5 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9104D03D19BBB15C00126FF5 /* Main_iPad.storyboard */; };
+		9104D04219BBB15C00126FF5 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9104D04119BBB15C00126FF5 /* FirstViewController.m */; };
+		9104D04519BBB15C00126FF5 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9104D04419BBB15C00126FF5 /* SecondViewController.m */; };
+		9104D04719BBB15C00126FF5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9104D04619BBB15C00126FF5 /* Images.xcassets */; };
+		9104D04E19BBB15C00126FF5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9104D04D19BBB15C00126FF5 /* XCTest.framework */; };
+		9104D04F19BBB15C00126FF5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9104D02819BBB15C00126FF5 /* Foundation.framework */; };
+		9104D05019BBB15C00126FF5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9104D02C19BBB15C00126FF5 /* UIKit.framework */; };
+		9104D05819BBB15D00126FF5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9104D05619BBB15D00126FF5 /* InfoPlist.strings */; };
+		9104D05A19BBB15D00126FF5 /* BU_Transit_ReduxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9104D05919BBB15D00126FF5 /* BU_Transit_ReduxTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9104D05119BBB15C00126FF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9104D01D19BBB15C00126FF5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9104D02419BBB15C00126FF5;
+			remoteInfo = "BU Transit Redux";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9104D02519BBB15C00126FF5 /* BU Transit Redux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BU Transit Redux.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9104D02819BBB15C00126FF5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9104D02A19BBB15C00126FF5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9104D02C19BBB15C00126FF5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9104D03019BBB15C00126FF5 /* BU Transit Redux-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BU Transit Redux-Info.plist"; sourceTree = "<group>"; };
+		9104D03219BBB15C00126FF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9104D03419BBB15C00126FF5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9104D03619BBB15C00126FF5 /* BU Transit Redux-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BU Transit Redux-Prefix.pch"; sourceTree = "<group>"; };
+		9104D03719BBB15C00126FF5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9104D03819BBB15C00126FF5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9104D03B19BBB15C00126FF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		9104D03E19BBB15C00126FF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		9104D04019BBB15C00126FF5 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		9104D04119BBB15C00126FF5 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		9104D04319BBB15C00126FF5 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		9104D04419BBB15C00126FF5 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		9104D04619BBB15C00126FF5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9104D04C19BBB15C00126FF5 /* BU Transit ReduxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BU Transit ReduxTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9104D04D19BBB15C00126FF5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		9104D05519BBB15D00126FF5 /* BU Transit ReduxTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BU Transit ReduxTests-Info.plist"; sourceTree = "<group>"; };
+		9104D05719BBB15D00126FF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9104D05919BBB15D00126FF5 /* BU_Transit_ReduxTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BU_Transit_ReduxTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9104D02219BBB15C00126FF5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9104D02B19BBB15C00126FF5 /* CoreGraphics.framework in Frameworks */,
+				9104D02D19BBB15C00126FF5 /* UIKit.framework in Frameworks */,
+				9104D02919BBB15C00126FF5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9104D04919BBB15C00126FF5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9104D04E19BBB15C00126FF5 /* XCTest.framework in Frameworks */,
+				9104D05019BBB15C00126FF5 /* UIKit.framework in Frameworks */,
+				9104D04F19BBB15C00126FF5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9104D01C19BBB15C00126FF5 = {
+			isa = PBXGroup;
+			children = (
+				9104D02E19BBB15C00126FF5 /* BU Transit Redux */,
+				9104D05319BBB15C00126FF5 /* BU Transit ReduxTests */,
+				9104D02719BBB15C00126FF5 /* Frameworks */,
+				9104D02619BBB15C00126FF5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9104D02619BBB15C00126FF5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9104D02519BBB15C00126FF5 /* BU Transit Redux.app */,
+				9104D04C19BBB15C00126FF5 /* BU Transit ReduxTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9104D02719BBB15C00126FF5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9104D02819BBB15C00126FF5 /* Foundation.framework */,
+				9104D02A19BBB15C00126FF5 /* CoreGraphics.framework */,
+				9104D02C19BBB15C00126FF5 /* UIKit.framework */,
+				9104D04D19BBB15C00126FF5 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9104D02E19BBB15C00126FF5 /* BU Transit Redux */ = {
+			isa = PBXGroup;
+			children = (
+				9104D03719BBB15C00126FF5 /* AppDelegate.h */,
+				9104D03819BBB15C00126FF5 /* AppDelegate.m */,
+				9104D03A19BBB15C00126FF5 /* Main_iPhone.storyboard */,
+				9104D03D19BBB15C00126FF5 /* Main_iPad.storyboard */,
+				9104D04019BBB15C00126FF5 /* FirstViewController.h */,
+				9104D04119BBB15C00126FF5 /* FirstViewController.m */,
+				9104D04319BBB15C00126FF5 /* SecondViewController.h */,
+				9104D04419BBB15C00126FF5 /* SecondViewController.m */,
+				9104D04619BBB15C00126FF5 /* Images.xcassets */,
+				9104D02F19BBB15C00126FF5 /* Supporting Files */,
+			);
+			path = "BU Transit Redux";
+			sourceTree = "<group>";
+		};
+		9104D02F19BBB15C00126FF5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9104D03019BBB15C00126FF5 /* BU Transit Redux-Info.plist */,
+				9104D03119BBB15C00126FF5 /* InfoPlist.strings */,
+				9104D03419BBB15C00126FF5 /* main.m */,
+				9104D03619BBB15C00126FF5 /* BU Transit Redux-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9104D05319BBB15C00126FF5 /* BU Transit ReduxTests */ = {
+			isa = PBXGroup;
+			children = (
+				9104D05919BBB15D00126FF5 /* BU_Transit_ReduxTests.m */,
+				9104D05419BBB15D00126FF5 /* Supporting Files */,
+			);
+			path = "BU Transit ReduxTests";
+			sourceTree = "<group>";
+		};
+		9104D05419BBB15D00126FF5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9104D05519BBB15D00126FF5 /* BU Transit ReduxTests-Info.plist */,
+				9104D05619BBB15D00126FF5 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9104D02419BBB15C00126FF5 /* BU Transit Redux */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9104D05D19BBB15D00126FF5 /* Build configuration list for PBXNativeTarget "BU Transit Redux" */;
+			buildPhases = (
+				9104D02119BBB15C00126FF5 /* Sources */,
+				9104D02219BBB15C00126FF5 /* Frameworks */,
+				9104D02319BBB15C00126FF5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BU Transit Redux";
+			productName = "BU Transit Redux";
+			productReference = 9104D02519BBB15C00126FF5 /* BU Transit Redux.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9104D04B19BBB15C00126FF5 /* BU Transit ReduxTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9104D06019BBB15D00126FF5 /* Build configuration list for PBXNativeTarget "BU Transit ReduxTests" */;
+			buildPhases = (
+				9104D04819BBB15C00126FF5 /* Sources */,
+				9104D04919BBB15C00126FF5 /* Frameworks */,
+				9104D04A19BBB15C00126FF5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9104D05219BBB15C00126FF5 /* PBXTargetDependency */,
+			);
+			name = "BU Transit ReduxTests";
+			productName = "BU Transit ReduxTests";
+			productReference = 9104D04C19BBB15C00126FF5 /* BU Transit ReduxTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9104D01D19BBB15C00126FF5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				TargetAttributes = {
+					9104D04B19BBB15C00126FF5 = {
+						TestTargetID = 9104D02419BBB15C00126FF5;
+					};
+				};
+			};
+			buildConfigurationList = 9104D02019BBB15C00126FF5 /* Build configuration list for PBXProject "BU Transit Redux" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9104D01C19BBB15C00126FF5;
+			productRefGroup = 9104D02619BBB15C00126FF5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9104D02419BBB15C00126FF5 /* BU Transit Redux */,
+				9104D04B19BBB15C00126FF5 /* BU Transit ReduxTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9104D02319BBB15C00126FF5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9104D03F19BBB15C00126FF5 /* Main_iPad.storyboard in Resources */,
+				9104D04719BBB15C00126FF5 /* Images.xcassets in Resources */,
+				9104D03C19BBB15C00126FF5 /* Main_iPhone.storyboard in Resources */,
+				9104D03319BBB15C00126FF5 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9104D04A19BBB15C00126FF5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9104D05819BBB15D00126FF5 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9104D02119BBB15C00126FF5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9104D04519BBB15C00126FF5 /* SecondViewController.m in Sources */,
+				9104D03919BBB15C00126FF5 /* AppDelegate.m in Sources */,
+				9104D04219BBB15C00126FF5 /* FirstViewController.m in Sources */,
+				9104D03519BBB15C00126FF5 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9104D04819BBB15C00126FF5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9104D05A19BBB15D00126FF5 /* BU_Transit_ReduxTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9104D05219BBB15C00126FF5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9104D02419BBB15C00126FF5 /* BU Transit Redux */;
+			targetProxy = 9104D05119BBB15C00126FF5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9104D03119BBB15C00126FF5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9104D03219BBB15C00126FF5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		9104D03A19BBB15C00126FF5 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9104D03B19BBB15C00126FF5 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		9104D03D19BBB15C00126FF5 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9104D03E19BBB15C00126FF5 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		9104D05619BBB15D00126FF5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9104D05719BBB15D00126FF5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9104D05B19BBB15D00126FF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9104D05C19BBB15D00126FF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9104D05E19BBB15D00126FF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BU Transit Redux/BU Transit Redux-Prefix.pch";
+				INFOPLIST_FILE = "BU Transit Redux/BU Transit Redux-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		9104D05F19BBB15D00126FF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BU Transit Redux/BU Transit Redux-Prefix.pch";
+				INFOPLIST_FILE = "BU Transit Redux/BU Transit Redux-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		9104D06119BBB15D00126FF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BU Transit Redux.app/BU Transit Redux";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BU Transit Redux/BU Transit Redux-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "BU Transit ReduxTests/BU Transit ReduxTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		9104D06219BBB15D00126FF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BU Transit Redux.app/BU Transit Redux";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BU Transit Redux/BU Transit Redux-Prefix.pch";
+				INFOPLIST_FILE = "BU Transit ReduxTests/BU Transit ReduxTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9104D02019BBB15C00126FF5 /* Build configuration list for PBXProject "BU Transit Redux" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9104D05B19BBB15D00126FF5 /* Debug */,
+				9104D05C19BBB15D00126FF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9104D05D19BBB15D00126FF5 /* Build configuration list for PBXNativeTarget "BU Transit Redux" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9104D05E19BBB15D00126FF5 /* Debug */,
+				9104D05F19BBB15D00126FF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9104D06019BBB15D00126FF5 /* Build configuration list for PBXNativeTarget "BU Transit ReduxTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9104D06119BBB15D00126FF5 /* Debug */,
+				9104D06219BBB15D00126FF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9104D01D19BBB15C00126FF5 /* Project object */;
+}
