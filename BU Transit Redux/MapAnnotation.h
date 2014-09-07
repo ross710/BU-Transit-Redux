@@ -19,9 +19,7 @@ enum BUT_AnnotationType : NSUInteger {
 };
 
 
-@interface MapAnnotation : NSObject<MKAnnotation> {
-    CLLocationCoordinate2D location;
-}
+@interface MapAnnotation : NSObject<MKAnnotation>
 @property (nonatomic) CLLocationCoordinate2D location;
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSNumber *stopId;

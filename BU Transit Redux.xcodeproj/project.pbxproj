@@ -13,7 +13,6 @@
 		9104D03319BBB15C00126FF5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9104D03119BBB15C00126FF5 /* InfoPlist.strings */; };
 		9104D03519BBB15C00126FF5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9104D03419BBB15C00126FF5 /* main.m */; };
 		9104D03919BBB15C00126FF5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9104D03819BBB15C00126FF5 /* AppDelegate.m */; };
-		9104D03C19BBB15C00126FF5 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9104D03A19BBB15C00126FF5 /* Main_iPhone.storyboard */; };
 		9104D03F19BBB15C00126FF5 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9104D03D19BBB15C00126FF5 /* Main_iPad.storyboard */; };
 		9104D04719BBB15C00126FF5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9104D04619BBB15C00126FF5 /* Images.xcassets */; };
 		9104D04E19BBB15C00126FF5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9104D04D19BBB15C00126FF5 /* XCTest.framework */; };
@@ -30,7 +29,6 @@
 		9104D07C19BBB72700126FF5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9104D07B19BBB72700126FF5 /* CoreData.framework */; };
 		9104D07E19BBB72F00126FF5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9104D07D19BBB72F00126FF5 /* SystemConfiguration.framework */; };
 		9104D08019BBB73900126FF5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9104D07F19BBB73900126FF5 /* libz.dylib */; };
-		9104D08219BBB8B300126FF5 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9104D08119BBB8B300126FF5 /* libGoogleAnalyticsServices.a */; };
 		9104D08919BBBA6000126FF5 /* BUT_HelpIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9104D08719BBBA6000126FF5 /* BUT_HelpIcon.png */; };
 		9104D08A19BBBA6000126FF5 /* BUT_HelpIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9104D08819BBBA6000126FF5 /* BUT_HelpIcon@2x.png */; };
 		9104D08D19BBBAB700126FF5 /* BUT_SettingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9104D08B19BBBAB700126FF5 /* BUT_SettingsIcon.png */; };
@@ -74,6 +72,12 @@
 		9104D10A19BBE38100126FF5 /* JSONSyntaxHighlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 9104D0FC19BBE38100126FF5 /* JSONSyntaxHighlight.m */; };
 		9104D10B19BBE38100126FF5 /* STHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9104D0FE19BBE38100126FF5 /* STHTTPRequest.m */; };
 		9104D10D19BBE56500126FF5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9104D10C19BBE56500126FF5 /* CoreLocation.framework */; };
+		9105FB7A19BC8F45001625C7 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9105FB7919BC8F45001625C7 /* libGoogleAnalyticsServices.a */; };
+		9105FB7F19BC9BC2001625C7 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9105FB7E19BC9BC2001625C7 /* Main_iPhone.storyboard */; };
+		9105FB8219BCA400001625C7 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9105FB8119BCA400001625C7 /* ScheduleViewController.m */; };
+		9105FB8619BCA4E0001625C7 /* BUT_ScheduleIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9105FB8419BCA4E0001625C7 /* BUT_ScheduleIcon.png */; };
+		9105FB8719BCA4E0001625C7 /* BUT_ScheduleIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9105FB8519BCA4E0001625C7 /* BUT_ScheduleIcon@2x.png */; };
+		91C36F1B19BC8B17004C8B49 /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C36F1A19BC8B17004C8B49 /* PageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,7 +101,6 @@
 		9104D03619BBB15C00126FF5 /* BU Transit Redux-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BU Transit Redux-Prefix.pch"; sourceTree = "<group>"; };
 		9104D03719BBB15C00126FF5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9104D03819BBB15C00126FF5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9104D03B19BBB15C00126FF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		9104D03E19BBB15C00126FF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		9104D04619BBB15C00126FF5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9104D04C19BBB15C00126FF5 /* BU Transit ReduxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BU Transit ReduxTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,7 +127,6 @@
 		9104D07B19BBB72700126FF5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		9104D07D19BBB72F00126FF5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9104D07F19BBB73900126FF5 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		9104D08119BBB8B300126FF5 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		9104D08719BBBA6000126FF5 /* BUT_HelpIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BUT_HelpIcon.png; sourceTree = "<group>"; };
 		9104D08819BBBA6000126FF5 /* BUT_HelpIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BUT_HelpIcon@2x.png"; sourceTree = "<group>"; };
 		9104D08B19BBBAB700126FF5 /* BUT_SettingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BUT_SettingsIcon.png; sourceTree = "<group>"; };
@@ -206,6 +208,14 @@
 		9104D0FD19BBE38100126FF5 /* STHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTTPRequest.h; sourceTree = "<group>"; };
 		9104D0FE19BBE38100126FF5 /* STHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTTPRequest.m; sourceTree = "<group>"; };
 		9104D10C19BBE56500126FF5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		9105FB7919BC8F45001625C7 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		9105FB7E19BC9BC2001625C7 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
+		9105FB8019BCA400001625C7 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
+		9105FB8119BCA400001625C7 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
+		9105FB8419BCA4E0001625C7 /* BUT_ScheduleIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BUT_ScheduleIcon.png; sourceTree = "<group>"; };
+		9105FB8519BCA4E0001625C7 /* BUT_ScheduleIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BUT_ScheduleIcon@2x.png"; sourceTree = "<group>"; };
+		91C36F1919BC8B17004C8B49 /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
+		91C36F1A19BC8B17004C8B49 /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,10 +225,10 @@
 			files = (
 				9104D10D19BBE56500126FF5 /* CoreLocation.framework in Frameworks */,
 				9104D0D519BBD60F00126FF5 /* MapKit.framework in Frameworks */,
+				9105FB7A19BC8F45001625C7 /* libGoogleAnalyticsServices.a in Frameworks */,
 				9104D08019BBB73900126FF5 /* libz.dylib in Frameworks */,
 				9104D07E19BBB72F00126FF5 /* SystemConfiguration.framework in Frameworks */,
 				9104D07C19BBB72700126FF5 /* CoreData.framework in Frameworks */,
-				9104D08219BBB8B300126FF5 /* libGoogleAnalyticsServices.a in Frameworks */,
 				9104D02B19BBB15C00126FF5 /* CoreGraphics.framework in Frameworks */,
 				9104D02D19BBB15C00126FF5 /* UIKit.framework in Frameworks */,
 				9104D02919BBB15C00126FF5 /* Foundation.framework in Frameworks */,
@@ -278,9 +288,12 @@
 			children = (
 				9104D07019BBB62F00126FF5 /* Google Analytics */,
 				9104D03D19BBB15C00126FF5 /* Main_iPad.storyboard */,
-				9104D03A19BBB15C00126FF5 /* Main_iPhone.storyboard */,
+				9105FB7E19BC9BC2001625C7 /* Main_iPhone.storyboard */,
 				9104D03719BBB15C00126FF5 /* AppDelegate.h */,
 				9104D03819BBB15C00126FF5 /* AppDelegate.m */,
+				91C36F1919BC8B17004C8B49 /* PageViewController.h */,
+				91C36F1A19BC8B17004C8B49 /* PageViewController.m */,
+				9105FB8319BCA409001625C7 /* Schedule */,
 				9104D0A219BBC05200126FF5 /* Backend */,
 				9104D08419BBB96B00126FF5 /* List */,
 				9104D08319BBB95E00126FF5 /* Map */,
@@ -326,6 +339,8 @@
 		9104D06719BBB35F00126FF5 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9105FB8419BCA4E0001625C7 /* BUT_ScheduleIcon.png */,
+				9105FB8519BCA4E0001625C7 /* BUT_ScheduleIcon@2x.png */,
 				9104D0DD19BBDF2600126FF5 /* BUT_StopAnnotationIcon@2x.png */,
 				9104D0DE19BBDF2600126FF5 /* BUT_StopAnnotationIcon.png */,
 				9104D08B19BBBAB700126FF5 /* BUT_SettingsIcon.png */,
@@ -345,7 +360,7 @@
 		9104D07019BBB62F00126FF5 /* Google Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				9104D08119BBB8B300126FF5 /* libGoogleAnalyticsServices.a */,
+				9105FB7919BC8F45001625C7 /* libGoogleAnalyticsServices.a */,
 				9104D07119BBB6F800126FF5 /* GAI.h */,
 				9104D07219BBB6F800126FF5 /* GAIDictionaryBuilder.h */,
 				9104D07319BBB6F800126FF5 /* GAIEcommerceFields.h */,
@@ -515,6 +530,15 @@
 			path = Vendor;
 			sourceTree = "<group>";
 		};
+		9105FB8319BCA409001625C7 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				9105FB8019BCA400001625C7 /* ScheduleViewController.h */,
+				9105FB8119BCA400001625C7 /* ScheduleViewController.m */,
+			);
+			name = Schedule;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -594,14 +618,16 @@
 				9104D0E019BBDF2600126FF5 /* BUT_StopAnnotationIcon.png in Resources */,
 				9104D03F19BBB15C00126FF5 /* Main_iPad.storyboard in Resources */,
 				9104D0DF19BBDF2600126FF5 /* BUT_StopAnnotationIcon@2x.png in Resources */,
+				9105FB7F19BC9BC2001625C7 /* Main_iPhone.storyboard in Resources */,
 				9104D04719BBB15C00126FF5 /* Images.xcassets in Resources */,
 				9104D06B19BBB45300126FF5 /* BUT_MapIcon.png in Resources */,
 				9104D08E19BBBAB700126FF5 /* BUT_SettingsIcon@2x.png in Resources */,
+				9105FB8719BCA4E0001625C7 /* BUT_ScheduleIcon@2x.png in Resources */,
 				9104D08A19BBBA6000126FF5 /* BUT_HelpIcon@2x.png in Resources */,
 				9104D06F19BBB52100126FF5 /* BUT_TwitterIcon.png in Resources */,
-				9104D03C19BBB15C00126FF5 /* Main_iPhone.storyboard in Resources */,
 				9104D06A19BBB45300126FF5 /* BUT_MapIcon@2x.png in Resources */,
 				9104D03319BBB15C00126FF5 /* InfoPlist.strings in Resources */,
+				9105FB8619BCA4E0001625C7 /* BUT_ScheduleIcon.png in Resources */,
 				9104D06E19BBB52100126FF5 /* BUT_TwitterIcon@2x.png in Resources */,
 				9104D08919BBBA6000126FF5 /* BUT_HelpIcon.png in Resources */,
 				9104D08D19BBBAB700126FF5 /* BUT_SettingsIcon.png in Resources */,
@@ -643,6 +669,7 @@
 				9104D0A119BBC04500126FF5 /* BUT_Backend.m in Sources */,
 				9104D0CD19BBC5A200126FF5 /* UNIHTTPRequest.m in Sources */,
 				9104D0D819BBD91300126FF5 /* MapAnnotation.m in Sources */,
+				9105FB8219BCA400001625C7 /* ScheduleViewController.m in Sources */,
 				9104D0CB19BBC5A200126FF5 /* UNIJsonNode.m in Sources */,
 				9104D09219BBBD2D00126FF5 /* ListViewController.m in Sources */,
 				9104D0D019BBC5A200126FF5 /* UNIUrlConnection.m in Sources */,
@@ -661,6 +688,7 @@
 				9104D09519BBBD6300126FF5 /* MapViewController.m in Sources */,
 				9104D0C419BBC5A200126FF5 /* UNIBaseRequest.m in Sources */,
 				9104D0CF19BBC5A200126FF5 /* UNIRest.m in Sources */,
+				91C36F1B19BC8B17004C8B49 /* PageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,14 +717,6 @@
 				9104D03219BBB15C00126FF5 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		9104D03A19BBB15C00126FF5 /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9104D03B19BBB15C00126FF5 /* Base */,
-			);
-			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
 		9104D03D19BBB15C00126FF5 /* Main_iPad.storyboard */ = {
@@ -799,12 +819,7 @@
 				GCC_PREFIX_HEADER = "BU Transit Redux/BU Transit Redux-Prefix.pch";
 				INFOPLIST_FILE = "BU Transit Redux/BU Transit Redux-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/BU",
-					Transit,
-					Redux,
-				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/BU Transit Redux";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -820,12 +835,7 @@
 				GCC_PREFIX_HEADER = "BU Transit Redux/BU Transit Redux-Prefix.pch";
 				INFOPLIST_FILE = "BU Transit Redux/BU Transit Redux-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/BU",
-					Transit,
-					Redux,
-				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/BU Transit Redux";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -891,6 +901,7 @@
 				9104D05F19BBB15D00126FF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9104D06019BBB15D00126FF5 /* Build configuration list for PBXNativeTarget "BU Transit ReduxTests" */ = {
 			isa = XCConfigurationList;
@@ -899,6 +910,7 @@
 				9104D06219BBB15D00126FF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
