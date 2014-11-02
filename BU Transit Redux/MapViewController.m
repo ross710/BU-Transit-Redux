@@ -242,6 +242,43 @@
 
 }
 
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
+    MKAnnotationView *aV;
+    
+    for (aV in views) {
+        if ([[aV annotation] isKindOfClass:[MKUserLocation class]])
+        {
+            aV.layer.zPosition = 2049;
+            continue;
+        } else if ([[aV annotation] isKindOfClass:[MapAnnotation class]])
+        {
+            aV.layer.zPosition = 2047;
+        }
+        else
+        {
+            aV.layer.zPosition = 2048;
+            
+        }
+        
+        
+        // Check if current annotation is inside visible map rect
+        MKMapPoint point =  MKMapPointForCoordinate(aV.annotation.coordinate);
+        if (!MKMapRectContainsPoint(self.mapView.visibleMapRect, point)) {
+            continue;
+        }
+        
+        CGRect endFrame = aV.frame;
+        
+        // Move annotation out of view
+        aV.frame = CGRectMake(aV.frame.origin.x,
+                              aV.frame.origin.y - self.mapView.frame.size.height,
+                              aV.frame.size.width,
+                              aV.frame.size.height);
+        aV.frame = endFrame;
+    }
+}
+
+
 
 #pragma mark - reset map
 -(void) resetMap {
@@ -310,14 +347,16 @@
             MapAnnotation *annotation = [self annotationForObjectId: objectId];
             
             if (annotation) {
-                [UIView animateWithDuration:0.2 animations:^{
-
-                    annotation.location = location;
-                }];
+                [UIView beginAnimations:nil context:NULL];
+                [UIView setAnimationDuration:0.5];
+                [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+                
+                [annotation setLocation:location];
+                [UIView commitAnimations];
             } else {
 
                 MapAnnotation *mapAnnotation = [[MapAnnotation alloc] initWithType:BUT_AnnotationTypeVehicles
-                                                                              name:[object objectForKey:@"name"]
+                                                                              name:[object objectForKey:@"call_name"]
                                                                           objectId:objectId
                                                                           location:location];
                 [self.mapView addAnnotation:mapAnnotation];

@@ -46,8 +46,9 @@
                                              selector:@selector(stopsUpdated:)
                                                  name:@"stopsUpdated"
                                                object:nil];
-    [self.tableView reloadData];
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 //    [BUT_Backend getStopsWithBlock:^{
 //        dispatch_async(dispatch_get_main_queue(), ^{
 //            [self.tableView reloadData];
@@ -80,11 +81,15 @@
 }
 - (void) stopsUpdated:(NSNotification *) notification
 {
-    [self.tableView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
 - (void) vehiclesUpdated:(NSNotification *) notification
 {
-    [self.tableView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
 
 #pragma mark - Table view data source

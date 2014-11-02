@@ -63,7 +63,7 @@
             
             break;
         case BUT_AnnotationTypeVehicles:
-            return self.name;
+            return @"Bus";
             break;
         default:
             break;
@@ -86,6 +86,8 @@
             
             break;
         case BUT_AnnotationTypeVehicles:
+            return self.name;
+
             break;
         default:
             break;
@@ -99,7 +101,7 @@
 
 - (void) setCoordinate:(CLLocationCoordinate2D)newCoordinate
 {
-    self.coordinate = newCoordinate;
+    self.location = newCoordinate;
 }
 
 @end
