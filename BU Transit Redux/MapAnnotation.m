@@ -16,10 +16,12 @@
 
 - (id)initWithType:(NSInteger) type
               name:(NSString*)name
-            stopId:(NSNumber*)stopId
+            objectId:(NSString*)objectId
             location:(CLLocationCoordinate2D)location {
     if ((self = [super init])) {
         self.type = type;
+        self.objId = objectId;
+
         switch (type) {
             case BUT_AnnotationTypeArrivalEstimates:
                 
@@ -29,7 +31,6 @@
                 break;
             case BUT_AnnotationTypeStops:
                 self.name = name;
-                self.stopId = stopId;
                 self.location = location;
                 
                 break;
@@ -37,7 +38,8 @@
                 
                 break;
             case BUT_AnnotationTypeVehicles:
-                
+                self.name = name;
+                self.location = location;
                 break;
             default:
                 break;
@@ -61,7 +63,7 @@
             
             break;
         case BUT_AnnotationTypeVehicles:
-            
+            return self.name;
             break;
         default:
             break;
@@ -78,13 +80,12 @@
             
             break;
         case BUT_AnnotationTypeStops:
-            return self.stopId;
+            return self.objId;
             break;
         case BUT_AnnotationTypeSegments:
             
             break;
         case BUT_AnnotationTypeVehicles:
-            
             break;
         default:
             break;
@@ -94,6 +95,11 @@
 
 - (CLLocationCoordinate2D)coordinate {
     return self.location;
+}
+
+- (void) setCoordinate:(CLLocationCoordinate2D)newCoordinate
+{
+    self.coordinate = newCoordinate;
 }
 
 @end

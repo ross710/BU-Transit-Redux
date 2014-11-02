@@ -18,6 +18,9 @@
 @interface MapViewController ()
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
+
+@property (strong, nonatomic) MKPolyline *routeLine;
+@property (strong, nonatomic) MKPolylineView *routeLineView;
 @end
 
 @implementation MapViewController
@@ -34,11 +37,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(userLocationChanged:)
                                                  name:@"userLocationChanged"
                                                object:nil];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(vehiclesUpdated:)
+                                                 name:@"vehiclesUpdated"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(stopsUpdated:)
+                                                 name:@"stopsUpdated"
+                                               object:nil];
     //Navbar
     UIBarButtonItem *helpButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
                                                                                 target:self
@@ -51,9 +64,14 @@
                                                                                    action:@selector(refreshButtonPressed:)];
     self.navigationItem.rightBarButtonItem = refreshButton;
     
+    
+    [self plotRoute];
+    [self plotVehicles];
+    [self plotStops];
+    
     [self resetMap];
 
-    [self plotStops];
+
     // Do any additional setup after loading the view.
 }
 
@@ -81,6 +99,15 @@
 - (void) userLocationChanged:(NSNotification *) notification
 {
     self.navigationItem.title = [BUT_Backend sharedInstance].userLocationString;
+}
+
+- (void) stopsUpdated:(NSNotification *) notification
+{
+    [self plotStops];
+}
+- (void) vehiclesUpdated:(NSNotification *) notification
+{
+    [self plotVehicles];
 }
 
 #pragma mark - MKMapView delegate
@@ -115,6 +142,7 @@
             break;
         case BUT_AnnotationTypeVehicles:
             annotationView.layer.anchorPoint = CGPointMake(0.5f, 1.0f);
+            annotationView.image = [UIImage imageNamed:@"BUT_BusRedIcon.png"];
 
             break;
         default:
@@ -124,6 +152,95 @@
 	return annotationView;
 }
 
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id)overlay
+{
+    MKOverlayView *overlayView = nil;
+    
+    if(overlay == self.routeLine)
+    {
+        //if we have not yet created an overlay view for this overlay, create it now.
+        if(nil == self.routeLineView)
+        {
+            self.routeLineView = [[MKPolylineView alloc] initWithPolyline:self.routeLine];
+            self.routeLineView.strokeColor = [UIColor blueColor];
+            self.routeLineView.alpha = 0.8;
+            self.routeLineView.lineWidth = 3;
+        }
+        
+        overlayView = self.routeLineView;
+        
+    }
+    
+    return overlayView;
+    
+}
+
+-(void) plotRoute {
+    NSString* filePath;
+    filePath = [[NSBundle mainBundle] pathForResource:@"route" ofType:@"csv"];
+
+//    if (isNightTime) {
+//        filePath = [[NSBundle mainBundle] pathForResource:@"routeNight" ofType:@"csv"];
+//    } else {
+//        filePath = [[NSBundle mainBundle] pathForResource:@"route" ofType:@"csv"];
+//    }
+    NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+    NSArray* pointStrings = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    // while we create the route points, we will also be calculating the bounding box of our route
+    // so we can easily zoom in on it.
+    MKMapPoint northEastPoint;
+    MKMapPoint southWestPoint;
+    
+    // create a c array of points.
+    MKMapPoint* pointArr = malloc(sizeof(CLLocationCoordinate2D) * pointStrings.count);
+    
+    for(int idx = 0; idx < pointStrings.count; idx++)
+    {
+        // break the string down even further to latitude and longitude fields.
+        NSString* currentPointString = [pointStrings objectAtIndex:idx];
+        
+        NSArray* latLonArr = [currentPointString componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@","]];
+        
+        CLLocationDegrees latitude = [[latLonArr objectAtIndex:0] doubleValue];
+        CLLocationDegrees longitude = [[latLonArr objectAtIndex:1] doubleValue];
+        
+        // create our coordinate and add it to the correct spot in the array
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+        
+        MKMapPoint point = MKMapPointForCoordinate(coordinate);
+        
+        // if it is the first point, just use them, since we have nothing to compare to yet.
+        if (idx == 0) {
+            northEastPoint = point;
+            southWestPoint = point;
+        }
+        else
+        {
+            if (point.x > northEastPoint.x)
+                northEastPoint.x = point.x;
+            if(point.y > northEastPoint.y)
+                northEastPoint.y = point.y;
+            if (point.x < southWestPoint.x)
+                southWestPoint.x = point.x;
+            if (point.y < southWestPoint.y)
+                southWestPoint.y = point.y;
+        }
+        
+        pointArr[idx] = point;
+        
+    }
+    
+    // create the polyline based on the array of points.
+    self.routeLine = [MKPolyline polylineWithPoints:pointArr count:pointStrings.count];
+    
+    // clear the memory allocated earlier for the points
+    free(pointArr);
+
+    
+    [self.mapView addOverlay:self.routeLine];
+
+}
 
 
 #pragma mark - reset map
@@ -153,22 +270,7 @@
 
 #pragma mark - plot data
 -(void) plotStops {
-    NSArray *stops = [BUT_Backend getStopsWithBlock:^{
-        for (NSDictionary *object in [BUT_Backend sharedInstance].stops) {
-            NSDictionary *locationDictionary = [object objectForKey:@"location"];
-            NSString *latitudeString = [locationDictionary objectForKey:@"lat"];
-            NSString *longitudeString = [locationDictionary objectForKey:@"lng"];
-            
-            
-            CLLocationCoordinate2D location = CLLocationCoordinate2DMake([latitudeString doubleValue], [longitudeString doubleValue]);
-            MapAnnotation *mapAnnotation = [[MapAnnotation alloc] initWithType:BUT_AnnotationTypeStops
-                                                                          name:[object objectForKey:@"name"]
-                                                                        stopId:[object objectForKey:@"stop_id"]
-                                                                      location:location];
-            [self.mapView addAnnotation:mapAnnotation];
-        }
-
-    }];
+    NSArray *stops = [BUT_Backend sharedInstance].stops;
     if (stops) {
         for (NSDictionary *object in stops) {
             NSDictionary *locationDictionary = [object objectForKey:@"location"];
@@ -179,13 +281,60 @@
             CLLocationCoordinate2D location = CLLocationCoordinate2DMake([latitudeString doubleValue], [longitudeString doubleValue]);
             MapAnnotation *mapAnnotation = [[MapAnnotation alloc] initWithType:BUT_AnnotationTypeStops
                                                                           name:[object objectForKey:@"name"]
-                                                                        stopId:[object objectForKey:@"stop_id"]
+                                                                        objectId:[object objectForKey:@"stop_id"]
                                                                       location:location];
             [self.mapView addAnnotation:mapAnnotation];
         }
 
     }
     
+}
+
+
+-(void) plotVehicles {
+    NSArray *vehicles = [BUT_Backend sharedInstance].vehicles;
+    
+    if (vehicles) {
+        
+
+        
+        for (NSDictionary *object in vehicles) {
+            NSDictionary *locationDictionary = [object objectForKey:@"location"];
+            NSString *latitudeString = [locationDictionary objectForKey:@"lat"];
+            NSString *longitudeString = [locationDictionary objectForKey:@"lng"];
+            
+            
+            CLLocationCoordinate2D location = CLLocationCoordinate2DMake([latitudeString doubleValue], [longitudeString doubleValue]);
+            
+            NSString *objectId = [object objectForKey:@"vehicle_id"];
+            MapAnnotation *annotation = [self annotationForObjectId: objectId];
+            
+            if (annotation) {
+                [UIView animateWithDuration:0.2 animations:^{
+
+                    annotation.location = location;
+                }];
+            } else {
+
+                MapAnnotation *mapAnnotation = [[MapAnnotation alloc] initWithType:BUT_AnnotationTypeVehicles
+                                                                              name:[object objectForKey:@"name"]
+                                                                          objectId:objectId
+                                                                          location:location];
+                [self.mapView addAnnotation:mapAnnotation];
+            }
+        }
+        
+    }
+    
+}
+
+-(MapAnnotation *) annotationForObjectId:(NSString *) objectId{
+    for (MapAnnotation *annotation in self.mapView.annotations) {
+        if ([annotation.objId isEqualToString:objectId]) {
+            return annotation;
+        }
+    }
+    return nil;
 }
 
 

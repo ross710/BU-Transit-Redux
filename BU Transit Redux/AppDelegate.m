@@ -7,21 +7,28 @@
 //
 
 #import "AppDelegate.h"
-#import "GAI.h"
+#import "BUT_Backend.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Optional: automatically send uncaught exceptions to Google Analytics.
-    [GAI sharedInstance].trackUncaughtExceptions = YES;
-    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
-    [GAI sharedInstance].dispatchInterval = 20;
-    // Optional: set Logger to VERBOSE for debug information.
-    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
-    // Initialize tracker. Replace with your tracking ID.
-    [[GAI sharedInstance] trackerWithTrackingId:@"UA-54527123-1"];
+
     self.window.tintColor = [UIColor redColor];
+
+    
+    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTranslucent:NO];
+    
+    
+    [BUT_Backend sharedInstance];
+    [BUT_Backend getStopsWithBlock:nil];
+    [BUT_Backend getVehiclesWithBlock:nil];
+    
+    
+
+    
+//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 
 
     // Override point for customization after application launch.

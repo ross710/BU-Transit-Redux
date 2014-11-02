@@ -30,6 +30,9 @@ static BUT_Backend *sharedInstance;
             sharedInstance.stops = [[NSMutableArray alloc] init];
             sharedInstance.segments = [[NSMutableArray alloc] init];
             sharedInstance.vehicles= [[NSMutableArray alloc]init];
+            
+            
+
         }
     });
     
@@ -62,7 +65,10 @@ static BUT_Backend *sharedInstance;
                 NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
                 if (!error && [dict count] > 0) {
                     [BUT_Backend sharedInstance].stops = [dict objectForKey:@"data"];
-                    NSLog(@"%@",[BUT_Backend sharedInstance].stops);
+//                    NSLog(@"%@",[BUT_Backend sharedInstance].stops);
+                    [[NSNotificationCenter defaultCenter]
+                     postNotificationName:@"stopsUpdated"
+                     object:self];
                     if (block) {
                         block();
                     }
@@ -79,50 +85,37 @@ static BUT_Backend *sharedInstance;
     return [BUT_Backend sharedInstance].segments;
 }
 +(NSMutableArray*) getVehiclesWithBlock: (BUT_VoidBlock) block {
-    
-    if ([BUT_Backend sharedInstance].stops.count <= 0) {
-        [BUT_Backend getStopsWithBlock:^{
-            [[UNIRest get:^(UNISimpleRequest* request) {
-                [request setUrl:@"https://transloc-api-1-2.p.mashape.com/vehicles.json?agencies=bu"];
-                [request setHeaders:[BUT_Backend sharedInstance].headers];
-            }] asJsonAsync:^(UNIHTTPJsonResponse* response, NSError *error) {
-                NSData* data = [response rawBody];
-                if (error) {
-                    NSLog(@"Error: %@", error);
-                } else if ([data length] > 0) {
-                    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                    if (!error && [dict count] > 0) {
-                        [BUT_Backend sharedInstance].vehicles = [dict objectForKey:@"data"];
-                        NSLog(@"%@",[BUT_Backend sharedInstance].vehicles);
-                        if (block) {
-                            block();
-                        }
-                    }
-                }
+    [[UNIRest get:^(UNISimpleRequest* request) {
+        [request setUrl:@"https://transloc-api-1-2.p.mashape.com/vehicles.json?agencies=bu"];
+        [request setHeaders:[BUT_Backend sharedInstance].headers];
+    }] asJsonAsync:^(UNIHTTPJsonResponse* response, NSError *error) {
+        NSData* data = [response rawBody];
+        if (error) {
+            NSLog(@"Error: %@", error);
+        } else if ([data length] > 0) {
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            if (!error && [dict count] > 0) {
+                [BUT_Backend sharedInstance].vehicles = [[dict objectForKey:@"data"] objectForKey:@"132"];
+//                NSLog(@"%@",[BUT_Backend sharedInstance].vehicles);
                 
-            }];
-        }];
-    } else {
-        [[UNIRest get:^(UNISimpleRequest* request) {
-            [request setUrl:@"https://transloc-api-1-2.p.mashape.com/vehicles.json?agencies=bu"];
-            [request setHeaders:[BUT_Backend sharedInstance].headers];
-        }] asJsonAsync:^(UNIHTTPJsonResponse* response, NSError *error) {
-            NSData* data = [response rawBody];
-            if (error) {
-                NSLog(@"Error: %@", error);
-            } else if ([data length] > 0) {
-                NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                if (!error && [dict count] > 0) {
-                    [BUT_Backend sharedInstance].vehicles = [dict objectForKey:@"data"];
-                    NSLog(@"%@",[BUT_Backend sharedInstance].vehicles);
-                    if (block) {
-                        block();
-                    }
+                
+                [[NSNotificationCenter defaultCenter]
+                 postNotificationName:@"vehiclesUpdated"
+                 object:self];
+                
+                
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
+                    [BUT_Backend performSelector:@selector(getVehiclesWithBlock:) withObject:nil afterDelay:5.0];
+                }];
+
+                if (block) {
+                    block();
                 }
             }
-            
-        }];
-    }
+        }
+        
+    }];
+
     
     return [BUT_Backend sharedInstance].vehicles;
 }

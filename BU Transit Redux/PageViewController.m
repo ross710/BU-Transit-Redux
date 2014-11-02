@@ -7,16 +7,23 @@
 //
 
 #import "PageViewController.h"
+#import "ScheduleViewController.h"
+#import "ListViewController.h"
+#import "MapViewController.h"
+#import "TwitterViewController.h"
+#import "SettingsViewController.h"
 
-static const NSInteger indexSchedule = 1;
-static const NSInteger indexList = 2;
-static const NSInteger indexMap = 3;
-static const NSInteger indexTwitter = 4;
-static const NSInteger indexSettings = 5;
+static const NSInteger indexSchedule = 0;
+static const NSInteger indexList = 1;
+static const NSInteger indexMap = 2;
+static const NSInteger indexTwitter = 3;
+static const NSInteger indexSettings = 4;
 
 @interface PageViewController ()
 @property (nonatomic) NSArray *VCs;
 @property (nonatomic) UITabBar *tabBar;
+@property (nonatomic) NSInteger lastPageIndex;
+
 @end
 
 @implementation PageViewController
@@ -35,6 +42,9 @@ static const NSInteger indexSettings = 5;
     [super viewDidLoad];
     self.dataSource = self;
     self.delegate = self;
+    
+    
+    
     
     //Tabbar
     CGRect screenFrame = [UIScreen mainScreen].bounds;
@@ -61,9 +71,10 @@ static const NSInteger indexSettings = 5;
                                                          tag:indexSettings];
     [self.tabBar setItems:@[schedule, list, map, twitter, settings]];
     [self.tabBar setSelectedItem:list];
+    [self.tabBar setTranslucent:NO];
 
     
-    
+    self.tabBar.delegate = self;
     
     
     //PageView
@@ -96,7 +107,22 @@ static const NSInteger indexSettings = 5;
 }
 
 -(void) pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
+    self.lastPageIndex = [self.VCs indexOfObject:[self.childViewControllers objectAtIndex:0]];
     
+
+//
+//    if ([[self.childViewControllers objectAtIndex:0] isKindOfClass:[ScheduleViewController class]]) {
+//        self.lastPageIndex = indexSchedule;
+//    } else if ([[self.childViewControllers objectAtIndex:0] isKindOfClass:[ListViewController class]]) {
+//        self.lastPageIndex = indexList;
+//    } else if ([[self.childViewControllers objectAtIndex:0] isKindOfClass:[MapViewController class]]) {
+//        self.lastPageIndex = indexMap;
+//    } else if ([[self.childViewControllers objectAtIndex:0] isKindOfClass:[TwitterViewController class]]) {
+//        self.lastPageIndex = indexTwitter;
+//    } else if ([[self.childViewControllers objectAtIndex:0] isKindOfClass:[SettingsViewController class]]) {
+//        self.lastPageIndex = indexSettings;
+//    }
+
 }
 
 
@@ -108,9 +134,12 @@ static const NSInteger indexSettings = 5;
 {
     
     NSUInteger currentIndex = [self.VCs indexOfObject:viewController];
+    [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:currentIndex]];
+
     if(currentIndex == 0)
         return nil;
     
+
     return [self.VCs objectAtIndex:currentIndex -1];
     
 }
@@ -122,12 +151,34 @@ static const NSInteger indexSettings = 5;
        viewControllerAfterViewController:(UIViewController *)viewController
 {
     NSUInteger currentIndex = [self.VCs indexOfObject:viewController];
+    [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:currentIndex]];
+
     if(currentIndex == self.VCs.count - 1)
         return nil;
-    
+
     return [self.VCs objectAtIndex:currentIndex + 1];
     
 }
 
+
+#pragma mark - tab bar delegate
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+{
+    
+    __weak PageViewController* pvcw = self;
+    [self setViewControllers:@[[self.VCs objectAtIndex:item.tag]]
+                   direction:UIPageViewControllerNavigationDirectionReverse
+                    animated:NO completion:^(BOOL finished) {
+                        PageViewController* pvcs = pvcw;
+                        if (!pvcs) return;
+                        dispatch_async(dispatch_get_main_queue(), ^{
+
+                            [pvcs setViewControllers:@[[pvcs.VCs objectAtIndex:item.tag]]
+                                           direction:UIPageViewControllerNavigationDirectionReverse
+                                            animated:NO completion:nil];
+                        });
+                    }];
+
+}
 
 @end

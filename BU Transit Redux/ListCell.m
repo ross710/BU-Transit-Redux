@@ -19,17 +19,27 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+        CGFloat xPadding = 16;
+        CGFloat yPadding = 8;
         
-        stopName = [[UILabel alloc] initWithFrame:CGRectMake(16, 8, 280, 36)];
+        stopName = [[UILabel alloc] initWithFrame:CGRectMake(xPadding,
+                                                             yPadding,
+                                                             screenWidth - xPadding*2,
+                                                             36)];
         stopName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0];
         
-        UILabel *nextBusLabel = [[UILabel alloc] initWithFrame:CGRectMake(212, 48, 91, 21)];
+        UILabel *nextBusLabel = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth - 108 - xPadding, 48, 108, 21)];
         nextBusLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17.0];
         nextBusLabel.text = @"next bus is:";
+        nextBusLabel.textAlignment = NSTextAlignmentCenter;
+
         
-        UILabel *minutesAwayLabel = [[UILabel alloc] initWithFrame:CGRectMake(203, 112, 108, 21)];
+        UILabel *minutesAwayLabel = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth - 108 - xPadding, 112, 108, 21)];
         minutesAwayLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17.0];
         minutesAwayLabel.text = @"minutes away";
+        minutesAwayLabel.textAlignment = NSTextAlignmentCenter;
+
         
         
         timeAway = [[UILabel alloc] initWithFrame:CGRectMake(215, 76, 85, 31)];

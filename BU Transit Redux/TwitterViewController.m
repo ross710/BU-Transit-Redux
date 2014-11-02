@@ -87,6 +87,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    
     self.navigationItem.title = @"@BUShuttle Tweets";
     
     
@@ -164,9 +166,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     if (indexPath.section == 0 && [tweets count] > 0) {
+        CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+        
+        
+        
         NSString *text = [tweets objectAtIndex:[indexPath row]];
         
-        CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
+        
+        
+        CGSize constraint = CGSizeMake(screenWidth - (CELL_CONTENT_MARGIN * 2), 20000.0f);
         
         CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
         
@@ -180,7 +188,8 @@
 
 //http://www.cimgf.com/2009/09/23/uitableviewcell-dynamic-height/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+
     
     
     if (indexPath.section == 0) {
@@ -211,7 +220,7 @@
             if ([tweets count] == 0) {
                 //            text = @"No recent tweets from @BUShuttle";
             }
-            CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
+            CGSize constraint = CGSizeMake(screenWidth - (CELL_CONTENT_MARGIN * 2), 20000.0f);
             
             CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
             
@@ -219,7 +228,10 @@
                 label = (UILabel*)[cell viewWithTag:1];
             
             [label setText:text];
-            [label setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN, CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), MAX(size.height, 44.0f))];
+            [label setFrame:CGRectMake(CELL_CONTENT_MARGIN,
+                                       CELL_CONTENT_MARGIN,
+                                       screenWidth- (CELL_CONTENT_MARGIN * 2),
+                                       MAX(size.height, 44.0f))];
             
         }
         

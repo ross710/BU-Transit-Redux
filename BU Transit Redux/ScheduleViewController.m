@@ -27,7 +27,38 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.title = @"BU Shuttle Schedule";
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(webViewGoHome)];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(webViewGoBack)];
+    [self setUpWebView];
     // Do any additional setup after loading the view.
+}
+
+
+-(void) setUpWebView {
+    UIWebView *webview = [UIWebView new];
+    
+    self.view = webview;
+    [self webViewGoHome];
+}
+
+-(void) webViewGoHome {
+    NSString *fullURL = @"http://www.bu.edu/thebus/schedules/";
+    NSURL *url = [NSURL URLWithString:fullURL];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    [((UIWebView *)self.view) loadRequest:requestObj];
+
+}
+
+-(void) webViewGoBack {
+    if ([((UIWebView *)self.view) canGoBack]) {
+        [((UIWebView *)self.view) goBack];
+    } else {
+        
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -22,11 +22,13 @@ enum BUT_AnnotationType : NSUInteger {
 @interface MapAnnotation : NSObject<MKAnnotation>
 @property (nonatomic) CLLocationCoordinate2D location;
 @property (nonatomic) NSString *name;
-@property (nonatomic) NSNumber *stopId;
+@property (nonatomic) NSString *objId;
 @property (nonatomic) NSInteger type;
 
 - (id)initWithType:(NSInteger) type
               name:(NSString*)name
-            stopId:(NSNumber*)stopId
+                objectId:(NSString*)objectId
           location:(CLLocationCoordinate2D)location;
+- (void) setCoordinate:(CLLocationCoordinate2D)newCoordinate;
+
 @end

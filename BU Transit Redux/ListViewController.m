@@ -28,18 +28,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController.navigationBar setTranslucent:NO];
+
+    
+    
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(userLocationChanged:)
                                                  name:@"userLocationChanged"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(vehiclesUpdated:)
+                                                 name:@"vehiclesUpdated"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(stopsUpdated:)
+                                                 name:@"stopsUpdated"
+                                               object:nil];
+    [self.tableView reloadData];
     
-    [BUT_Backend getStopsWithBlock:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
+//    [BUT_Backend getStopsWithBlock:^{
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.tableView reloadData];
+//        });
+//
+//    }];
+//    [self.tableView reloadData];
 
-    }];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -61,6 +77,14 @@
 - (void) userLocationChanged:(NSNotification *) notification
 {
     self.navigationItem.title = [BUT_Backend sharedInstance].userLocationString;
+}
+- (void) stopsUpdated:(NSNotification *) notification
+{
+    [self.tableView reloadData];
+}
+- (void) vehiclesUpdated:(NSNotification *) notification
+{
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PageViewController : UIPageViewController<UIPageViewControllerDataSource,UIPageViewControllerDelegate, UIGestureRecognizerDelegate>
+@interface PageViewController : UIPageViewController<UIPageViewControllerDataSource,UIPageViewControllerDelegate, UIGestureRecognizerDelegate, UITabBarDelegate>
 
 @end
