@@ -7,8 +7,9 @@
 //
 
 #import "ScheduleViewController.h"
+#import "Constants.h"
 
-@interface ScheduleViewController ()
+@interface ScheduleViewController ()<UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end
@@ -33,13 +34,15 @@
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(webViewGoBack)];
     [self setUpWebView];
+    
+ 
     // Do any additional setup after loading the view.
 }
 
 
 -(void) setUpWebView {
     UIWebView *webview = [UIWebView new];
-    
+    webview.delegate = self;
     self.view = webview;
     [self webViewGoHome];
 }
@@ -59,6 +62,28 @@
         
     }
     
+}
+
+#pragma mark - UIWebViewDelegate
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    //Start the progressbar..
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+
+    return YES;
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    //Stop or remove progressbar
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+}
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    //Stop or remove progressbar and show error
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+
 }
 
 - (void)didReceiveMemoryWarning

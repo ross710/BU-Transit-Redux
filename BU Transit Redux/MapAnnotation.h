@@ -24,11 +24,12 @@ enum BUT_AnnotationType : NSUInteger {
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *objId;
 @property (nonatomic) NSInteger type;
+@property (nonatomic) NSString *arrivalEstimate;
+
 
 - (id)initWithType:(NSInteger) type
               name:(NSString*)name
                 objectId:(NSString*)objectId
           location:(CLLocationCoordinate2D)location;
 - (void) setCoordinate:(CLLocationCoordinate2D)newCoordinate;
-
 @end

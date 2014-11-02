@@ -25,7 +25,7 @@ static BUT_Backend *sharedInstance;
             sharedInstance.userLocationString = @"BU Transit";
             [sharedInstance initLocation];
             sharedInstance.headers = @{@"X-Mashape-Authorization": @"TiLRMRlEidBm0KT2ra9y2K6F43diqKsc"};
-            sharedInstance.arrivalEstimates = [[NSMutableArray alloc] init];
+            sharedInstance.arrivalEstimates = [[NSMutableDictionary alloc] init];
             sharedInstance.routes = [[NSMutableArray alloc] init];
             sharedInstance.stops = [[NSMutableArray alloc] init];
             sharedInstance.segments = [[NSMutableArray alloc] init];
@@ -39,12 +39,44 @@ static BUT_Backend *sharedInstance;
     return sharedInstance;
 }
 
-+(NSMutableArray*) getArrivalEstimatesWithBlock: (BUT_VoidBlock) block{
-        
++(NSMutableDictionary*) getArrivalEstimatesWithBlock: (BUT_VoidBlock) block{
+    [[UNIRest get:^(UNISimpleRequest* request) {
+        [request setUrl:@"https://transloc-api-1-2.p.mashape.com/arrival-estimates.json?agencies=bu"];
+        [request setHeaders:[BUT_Backend sharedInstance].headers];
+    }] asJsonAsync:^(UNIHTTPJsonResponse* response, NSError *error) {
+        NSData* data = [response rawBody];
+        if (error) {
+            NSLog(@"Error: %@", error);
+        } else if ([data length] > 0) {
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            if (!error && [dict count] > 0) {
+                
+                NSArray *aeArray = [dict objectForKey:@"data"];
+                [BUT_Backend sharedInstance].arrivalEstimates = [NSMutableDictionary dictionary];
 
-    
+                for (NSDictionary *arrivalEstimate in aeArray) {
+                    [[BUT_Backend sharedInstance].arrivalEstimates setObject:arrivalEstimate forKey:[arrivalEstimate objectForKey:@"stop_id"]];
+                }
+                
+                [[NSNotificationCenter defaultCenter]
+                 postNotificationName:@"arrivalEstimatesUpdated"
+                 object:self];
+                
+                
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
+                    [BUT_Backend performSelector:@selector(getArrivalEstimatesWithBlock:) withObject:nil afterDelay:5.0];
+                }];
+                
+                if (block) {
+                    block();
+                }
+            }
+        }
+        
+    }];
     return [BUT_Backend sharedInstance].arrivalEstimates;
 }
+
 
 +(NSMutableArray*) getRoutesWithBlock: (BUT_VoidBlock) block {
     

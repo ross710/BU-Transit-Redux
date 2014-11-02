@@ -42,7 +42,7 @@
 
         
         
-        timeAway = [[UILabel alloc] initWithFrame:CGRectMake(215, 76, 85, 31)];
+        timeAway = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth - 108 - xPadding, 76, 108, 31)];
         timeAway.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0];
         timeAway.textAlignment = NSTextAlignmentCenter;
         

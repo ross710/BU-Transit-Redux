@@ -19,7 +19,7 @@ typedef void (^BUT_VoidBlock) (void);
     CLLocation *myLocation;
 }
 @property (strong,nonatomic) NSString *userLocationString;
-@property (strong,nonatomic) NSMutableArray *arrivalEstimates;
+@property (strong,nonatomic) NSMutableDictionary *arrivalEstimates;
 @property (strong,nonatomic) NSMutableArray *routes;
 @property (strong,nonatomic) NSMutableArray *stops;
 @property (strong,nonatomic) NSMutableArray *segments;

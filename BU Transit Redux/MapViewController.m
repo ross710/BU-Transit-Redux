@@ -10,6 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "BUT_Backend.h"
 #import "MapAnnotation.h"
+#import "Constants.h"
 
 #define ZOOM_CONSTANT_IOS7 5150.0
 #define ZOOM_CONSTANT 4500
@@ -52,17 +53,18 @@
                                              selector:@selector(stopsUpdated:)
                                                  name:@"stopsUpdated"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(arrivalEstimatesUpdated:)
+                                                 name:@"arrivalEstimatesUpdated"
+                                               object:nil];
     //Navbar
-    UIBarButtonItem *helpButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
-                                                                                target:self
-                                                                                action:nil];
+    UIBarButtonItem *helpButton = [[UIBarButtonItem alloc] initWithTitle:@"Help" style:UIBarButtonItemStylePlain target:self action:@selector(helpButtonPressed:)];
     
     self.navigationItem.leftBarButtonItem = helpButton;
     
-    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
-                                                                                target:self
-                                                                                   action:@selector(refreshButtonPressed:)];
-    self.navigationItem.rightBarButtonItem = refreshButton;
+    UIBarButtonItem *resetButton = [[UIBarButtonItem alloc] initWithTitle:@"Reset" style:UIBarButtonItemStylePlain target:self action:@selector(resetButtonPressed:)];
+    
+    self.navigationItem.rightBarButtonItem = resetButton;
     
     
     [self plotRoute];
@@ -103,11 +105,28 @@
 
 - (void) stopsUpdated:(NSNotification *) notification
 {
-    [self plotStops];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [self plotStops];
+    });
 }
 - (void) vehiclesUpdated:(NSNotification *) notification
 {
-    [self plotVehicles];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [self plotVehicles];
+    });
+}
+- (void) arrivalEstimatesUpdated:(NSNotification *) notification
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        for (MapAnnotation *annotation in self.mapView.annotations) {
+            NSString *stop_id = [annotation objId];
+            NSDictionary *arrivalEstimate = [[BUT_Backend sharedInstance].arrivalEstimates objectForKey:stop_id];
+            [annotation setArrivalEstimate:[Utilities minutesMapFromArrivalEstimate:arrivalEstimate]];
+        }
+    });
 }
 
 #pragma mark - MKMapView delegate
@@ -301,9 +320,13 @@
     [self.mapView setRegion:viewRegion animated:YES];
 }
 
-- (IBAction)refreshButtonPressed:(id)sender {
+- (IBAction)helpButtonPressed:(id)sender {
     [self resetMap];
 }
+- (IBAction)resetButtonPressed:(id)sender {
+    [self resetMap];
+}
+
 
 #pragma mark - plot data
 -(void) plotStops {
@@ -317,7 +340,7 @@
             
             CLLocationCoordinate2D location = CLLocationCoordinate2DMake([latitudeString doubleValue], [longitudeString doubleValue]);
             MapAnnotation *mapAnnotation = [[MapAnnotation alloc] initWithType:BUT_AnnotationTypeStops
-                                                                          name:[object objectForKey:@"name"]
+                                                                          name:[object objectForKey:@"description"]
                                                                         objectId:[object objectForKey:@"stop_id"]
                                                                       location:location];
             [self.mapView addAnnotation:mapAnnotation];

@@ -9,6 +9,7 @@
 #import "ListViewController.h"
 #import "BUT_Backend.h"
 #import "ListCell.h"
+#import "Constants.h"
 
 @interface ListViewController ()
 
@@ -46,9 +47,18 @@
                                              selector:@selector(stopsUpdated:)
                                                  name:@"stopsUpdated"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(arrivalEstimatesUpdated:)
+                                                 name:@"arrivalEstimatesUpdated"
+                                               object:nil];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
     });
+    
+    
+
+
+
 //    [BUT_Backend getStopsWithBlock:^{
 //        dispatch_async(dispatch_get_main_queue(), ^{
 //            [self.tableView reloadData];
@@ -64,9 +74,14 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+
 -(void) viewWillAppear:(BOOL)animated {
+
     self.navigationItem.title = [BUT_Backend sharedInstance].userLocationString;
 }
+
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -86,6 +101,12 @@
     });
 }
 - (void) vehiclesUpdated:(NSNotification *) notification
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+}
+- (void) arrivalEstimatesUpdated:(NSNotification *) notification
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
@@ -121,8 +142,17 @@
         cell =  [[ListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
     }
-    cell.stopName.text = [[[BUT_Backend sharedInstance].stops objectAtIndex:indexPath.row] objectForKey:@"description"];
+    NSDictionary *stop = [[BUT_Backend sharedInstance].stops objectAtIndex:indexPath.row];
+    cell.stopName.text = [stop objectForKey:@"description"];
+    
+    
+    NSDictionary *arrivalEstimate = [[BUT_Backend sharedInstance].arrivalEstimates objectForKey:[stop objectForKey:@"stop_id"]];
+    
+    cell.timeAway.text = [Utilities minutesFromArrivalEstimate:arrivalEstimate];
+
     return cell;
 }
+
+
 
 @end

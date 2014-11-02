@@ -21,7 +21,7 @@
     if ((self = [super init])) {
         self.type = type;
         self.objId = objectId;
-
+        self.arrivalEstimate = [NSString new];
         switch (type) {
             case BUT_AnnotationTypeArrivalEstimates:
                 
@@ -80,7 +80,7 @@
             
             break;
         case BUT_AnnotationTypeStops:
-            return self.objId;
+            return self.arrivalEstimate;
             break;
         case BUT_AnnotationTypeSegments:
             
@@ -94,6 +94,8 @@
     }
     return @"";
 }
+
+
 
 - (CLLocationCoordinate2D)coordinate {
     return self.location;

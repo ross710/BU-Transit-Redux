@@ -12,6 +12,7 @@
 #import "MapViewController.h"
 #import "TwitterViewController.h"
 #import "SettingsViewController.h"
+#import "Constants.h"
 
 static const NSInteger indexSchedule = 0;
 static const NSInteger indexList = 1;
@@ -49,9 +50,9 @@ static const NSInteger indexSettings = 4;
     //Tabbar
     CGRect screenFrame = [UIScreen mainScreen].bounds;
     self.tabBar = [[UITabBar alloc] initWithFrame:CGRectMake(0,
-                                                             screenFrame.size.height-49,
+                                                             screenFrame.size.height-cTabBarHeight,
                                                              screenFrame.size.width,
-                                                             49)];
+                                                             cTabBarHeight)];
     [self.view addSubview:self.tabBar];
     UITabBarItem *schedule = [[UITabBarItem alloc] initWithTitle:@"Schedule"
                                                            image:[UIImage imageNamed:@"BUT_ScheduleIcon.png"]
@@ -70,7 +71,6 @@ static const NSInteger indexSettings = 4;
                                                        image:[UIImage imageNamed:@"BUT_SettingsIcon.png"]
                                                          tag:indexSettings];
     [self.tabBar setItems:@[schedule, list, map, twitter, settings]];
-    [self.tabBar setSelectedItem:list];
     [self.tabBar setTranslucent:NO];
 
     
@@ -80,6 +80,7 @@ static const NSInteger indexSettings = 4;
     //PageView
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main_iPhone"
                                                              bundle: nil];
+
     UINavigationController *controller = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"scheduleNav"];
     UINavigationController *controller2 = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"listNav"];
     UINavigationController *controller3 = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"mapNav"];
@@ -87,11 +88,39 @@ static const NSInteger indexSettings = 4;
     UINavigationController *controller5 = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"settingsNav"];
     self.VCs = @[controller, controller2, controller3, controller4, controller5];
     
-    [self setViewControllers:@[controller2] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:^(BOOL finished){}];
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    
+
+    if ([prefs objectForKey:kShowMapByDefault]) {
+        if ([[prefs objectForKey:kShowMapByDefault] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+            [self setViewControllers:@[controller3] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:^(BOOL finished){}];
+            [self.tabBar setSelectedItem:map];
+
+        } else {
+            [self setViewControllers:@[controller2] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:^(BOOL finished){}];
+            [self.tabBar setSelectedItem:list];
+
+        }
+        
+    } else {
+        [self setViewControllers:@[controller2] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:^(BOOL finished){}];
+        [self.tabBar setSelectedItem:list];
+
+    }
+    
+
+
     
     for (UIGestureRecognizer *gestureRecognizer in self.view.gestureRecognizers) {
         gestureRecognizer.delegate = self;
     }
+    
+    self.view.frame = CGRectMake(self.view.frame.origin.x,
+                                                        self.view.frame.origin.y + 200,
+                                                        self.view.frame.size.width,
+                                                        self.view.frame.size.height-cTabBarHeight);
+
     // Do any additional setup after loading the view.
 }
 
