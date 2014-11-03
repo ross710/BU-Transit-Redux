@@ -76,10 +76,8 @@
 
 
 -(void) viewWillAppear:(BOOL)animated {
-
     self.navigationItem.title = [BUT_Backend sharedInstance].userLocationString;
 }
-
 
 
 
@@ -143,7 +141,7 @@
         
     }
     NSDictionary *stop = [[BUT_Backend sharedInstance].stops objectAtIndex:indexPath.row];
-    cell.stopName.text = [stop objectForKey:@"description"];
+    cell.stopName.text = [stop objectForKey:@"name"];
     
     
     NSDictionary *arrivalEstimate = [[BUT_Backend sharedInstance].arrivalEstimates objectForKey:[stop objectForKey:@"stop_id"]];

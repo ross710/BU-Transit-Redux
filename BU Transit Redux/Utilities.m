@@ -36,8 +36,10 @@
 }
 
 +(NSString *) minutesFromArrivalEstimate: (NSDictionary *) arrivalEstimate {
+
     if (arrivalEstimate) {
         NSArray *arrivals = [arrivalEstimate objectForKey:@"arrivals"];
+        
         
         //Time
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];

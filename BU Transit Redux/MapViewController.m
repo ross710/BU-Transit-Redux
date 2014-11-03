@@ -340,7 +340,7 @@
             
             CLLocationCoordinate2D location = CLLocationCoordinate2DMake([latitudeString doubleValue], [longitudeString doubleValue]);
             MapAnnotation *mapAnnotation = [[MapAnnotation alloc] initWithType:BUT_AnnotationTypeStops
-                                                                          name:[object objectForKey:@"description"]
+                                                                          name:[object objectForKey:@"name"]
                                                                         objectId:[object objectForKey:@"stop_id"]
                                                                       location:location];
             [self.mapView addAnnotation:mapAnnotation];

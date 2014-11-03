@@ -29,9 +29,10 @@
     
     
     [BUT_Backend sharedInstance];
-    [BUT_Backend getStopsWithBlock:nil];
+    [BUT_Backend getStopsWithBlock:^(void) {
+         [BUT_Backend getArrivalEstimatesWithBlock:nil];
+    }];
     [BUT_Backend getVehiclesWithBlock:nil];
-    [BUT_Backend getArrivalEstimatesWithBlock:nil];
 
 
     [self registerForNotifications];

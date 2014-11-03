@@ -24,7 +24,7 @@ static BUT_Backend *sharedInstance;
             sharedInstance = [[BUT_Backend alloc] init];
             sharedInstance.userLocationString = @"BU Transit";
             [sharedInstance initLocation];
-            sharedInstance.headers = @{@"X-Mashape-Authorization": @"TiLRMRlEidBm0KT2ra9y2K6F43diqKsc"};
+            sharedInstance.headers = @{@"X-Mashape-Key": @"uZv7A5PnaZmshlh9APd2SJKQCXfmp1ubISCjsnFIBzMJCeJJru"};
             sharedInstance.arrivalEstimates = [[NSMutableDictionary alloc] init];
             sharedInstance.routes = [[NSMutableArray alloc] init];
             sharedInstance.stops = [[NSMutableArray alloc] init];
@@ -58,6 +58,8 @@ static BUT_Backend *sharedInstance;
                     [[BUT_Backend sharedInstance].arrivalEstimates setObject:arrivalEstimate forKey:[arrivalEstimate objectForKey:@"stop_id"]];
                 }
                 
+                
+//                NSLog(@"Arrival Estimates %@", [BUT_Backend sharedInstance].arrivalEstimates);
                 [[NSNotificationCenter defaultCenter]
                  postNotificationName:@"arrivalEstimatesUpdated"
                  object:self];

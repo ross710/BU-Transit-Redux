@@ -45,6 +45,7 @@
         timeAway = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth - 108 - xPadding, 76, 108, 31)];
         timeAway.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0];
         timeAway.textAlignment = NSTextAlignmentCenter;
+        [timeAway setAdjustsFontSizeToFitWidth:YES];
         
         
         inOrOutBound = [[UILabel alloc] initWithFrame:CGRectMake(32, 48, 160, 21)];
