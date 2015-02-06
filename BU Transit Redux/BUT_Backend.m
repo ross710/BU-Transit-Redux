@@ -7,7 +7,7 @@
 //
 
 #import "BUT_Backend.h"
-#import "UNIRest.h"
+#import <Unirest/UNIRest.h>
 
 @interface BUT_Backend()
 @property (strong, nonatomic) NSDictionary *headers;
@@ -40,6 +40,7 @@ static BUT_Backend *sharedInstance;
 }
 
 +(NSMutableDictionary*) getArrivalEstimatesWithBlock: (BUT_VoidBlock) block{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [[UNIRest get:^(UNISimpleRequest* request) {
         [request setUrl:@"https://transloc-api-1-2.p.mashape.com/arrival-estimates.json?agencies=bu"];
         [request setHeaders:[BUT_Backend sharedInstance].headers];
@@ -74,6 +75,8 @@ static BUT_Backend *sharedInstance;
                 }
             }
         }
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+
         
     }];
     return [BUT_Backend sharedInstance].arrivalEstimates;
@@ -87,6 +90,8 @@ static BUT_Backend *sharedInstance;
 }
 
 +(NSMutableArray*) getStopsWithBlock: (BUT_VoidBlock) block {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+
     if (![BUT_Backend sharedInstance].stops || [BUT_Backend sharedInstance].stops.count <= 0) {
         [[UNIRest get:^(UNISimpleRequest* request) {
             [request setUrl:@"https://transloc-api-1-2.p.mashape.com/stops.json?agencies=bu"];
@@ -108,8 +113,12 @@ static BUT_Backend *sharedInstance;
                     }
                 }
             }
-            
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+
         }];
+    } else {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+
     }
     return [BUT_Backend sharedInstance].stops;
 }
@@ -119,6 +128,8 @@ static BUT_Backend *sharedInstance;
     return [BUT_Backend sharedInstance].segments;
 }
 +(NSMutableArray*) getVehiclesWithBlock: (BUT_VoidBlock) block {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+
     [[UNIRest get:^(UNISimpleRequest* request) {
         [request setUrl:@"https://transloc-api-1-2.p.mashape.com/vehicles.json?agencies=bu"];
         [request setHeaders:[BUT_Backend sharedInstance].headers];
@@ -147,7 +158,8 @@ static BUT_Backend *sharedInstance;
                 }
             }
         }
-        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+
     }];
 
     
@@ -208,4 +220,6 @@ static BUT_Backend *sharedInstance;
 -(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
 
 }
+
+
 @end

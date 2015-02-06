@@ -73,7 +73,11 @@ var sendNotificationsToEveryoneWhoWants = function(stop_id, minutesTillArrival, 
     installationsQ.equalTo('wantsToBeNotified', true);
     installationsQ.equalTo("notificationTimes", minutesTillArrival[0]);
     
+    
+//    if (minutesTillArrival[0] <= 0)
     message += " " + minutesTillArrival[0] + " min";
+    
+    
     
     console.log(message + " " + JSON.stringify(installationsQ));
     return Parse.Push.send({

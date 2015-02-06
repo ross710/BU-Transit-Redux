@@ -59,6 +59,7 @@
                                                object:nil];
     //Navbar
     UIBarButtonItem *helpButton = [[UIBarButtonItem alloc] initWithTitle:@"Help" style:UIBarButtonItemStylePlain target:self action:@selector(helpButtonPressed:)];
+//    UIBarButtonItem *helpButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"BUT_HelpIcon"] style:UIBarButtonItemStylePlain target:self action:@selector(helpButtonPressed:)];
     
     self.navigationItem.leftBarButtonItem = helpButton;
     
@@ -181,7 +182,7 @@
         if(nil == self.routeLineView)
         {
             self.routeLineView = [[MKPolylineView alloc] initWithPolyline:self.routeLine];
-            self.routeLineView.strokeColor = [UIColor blueColor];
+            self.routeLineView.strokeColor = [UIColor darkGrayColor];
             self.routeLineView.alpha = 0.8;
             self.routeLineView.lineWidth = 3;
         }
@@ -321,7 +322,8 @@
 }
 
 - (IBAction)helpButtonPressed:(id)sender {
-    [self resetMap];
+    UIAlertView *helpAlert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"Red buses go to West Campus\n Black buses go East/to Med Campus" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+    [helpAlert show];
 }
 - (IBAction)resetButtonPressed:(id)sender {
     [self resetMap];
@@ -374,14 +376,16 @@
                 [UIView setAnimationDuration:0.5];
                 [UIView setAnimationCurve:UIViewAnimationCurveLinear];
                 
-                [annotation setLocation:location];
+              annotation.coordinate = location;
                 [UIView commitAnimations];
             } else {
-
-                MapAnnotation *mapAnnotation = [[MapAnnotation alloc] initWithType:BUT_AnnotationTypeVehicles
-                                                                              name:[object objectForKey:@"call_name"]
-                                                                          objectId:objectId
-                                                                          location:location];
+                                
+                MapAnnotation *mapAnnotation = [[MapAnnotation alloc]
+                                                initWithType:BUT_AnnotationTypeVehicles
+                                                name:[NSString stringWithFormat:@"#%@",[object objectForKey:@"call_name"]]
+                                                objectId:objectId
+                                                location:location
+                                                info:@{kBUTBusTypeString:[Utilities busTypeString:[object objectForKey:@"vehicle_id"]]}];
                 [self.mapView addAnnotation:mapAnnotation];
             }
         }

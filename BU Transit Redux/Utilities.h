@@ -13,4 +13,5 @@
 +(NSString *) minutesMapFromArrivalEstimate: (NSDictionary *) arrivalEstimate;
 +(NSString *) minutesFromArrivalEstimate: (NSDictionary *) arrivalEstimate;
 
++(NSString *) busTypeString: (NSNumber *) busNumber;
 @end

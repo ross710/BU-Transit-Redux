@@ -12,58 +12,11 @@
 
 @end
 @implementation ListCell
-@synthesize stopName,timeAway, inOrOutBound;
-@synthesize busType;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
-        CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
-        CGFloat xPadding = 16;
-        CGFloat yPadding = 8;
-        
-        stopName = [[UILabel alloc] initWithFrame:CGRectMake(xPadding,
-                                                             yPadding,
-                                                             screenWidth - xPadding*2,
-                                                             36)];
-        stopName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0];
-        
-        UILabel *nextBusLabel = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth - 108 - xPadding, 48, 108, 21)];
-        nextBusLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17.0];
-        nextBusLabel.text = @"next bus is:";
-        nextBusLabel.textAlignment = NSTextAlignmentCenter;
-
-        
-        UILabel *minutesAwayLabel = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth - 108 - xPadding, 112, 108, 21)];
-        minutesAwayLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17.0];
-        minutesAwayLabel.text = @"minutes away";
-        minutesAwayLabel.textAlignment = NSTextAlignmentCenter;
-
-        
-        
-        timeAway = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth - 108 - xPadding, 76, 108, 31)];
-        timeAway.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0];
-        timeAway.textAlignment = NSTextAlignmentCenter;
-        [timeAway setAdjustsFontSizeToFitWidth:YES];
-        
-        
-        inOrOutBound = [[UILabel alloc] initWithFrame:CGRectMake(32, 48, 160, 21)];
-        inOrOutBound.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13.0];
-        inOrOutBound.textAlignment = NSTextAlignmentLeft;
-        
-        
-        busType = [[UILabel alloc] initWithFrame:CGRectMake(32, 73, 160, 37)];
-        busType.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0];
-        busType.textAlignment = NSTextAlignmentLeft;
-        
-        
-        [self addSubview:stopName];
-        [self addSubview:timeAway];
-        [self addSubview:inOrOutBound];
-        [self addSubview:busType];
-        [self addSubview:nextBusLabel];
-        [self addSubview:minutesAwayLabel];
 
         
     }
@@ -76,5 +29,49 @@
 
     // Configure the view for the selected state
 }
+
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    
+    [self addShadowToView:self.innerView];
+    [self addShadowToView:self.timeAway];
+    
+    self.timeBackground.layer.cornerRadius = 4.0f;
+    [self addShadowToView:self.timeBackground];
+    
+    [self layoutSubviews];
+    
+
+
+}
+
+-(void) layoutSubviews {
+    [super layoutSubviews];
+    
+    [self addShadowPathToView:self.innerView];
+    [self addShadowPathToView:self.timeAway];
+    
+    
+
+    [self addShadowPathToView:self.timeBackground];
+
+}
+
+
+-(void) addShadowToView: (UIView *) view {
+    view.layer.drawsAsynchronously = YES;
+    view.layer.shadowOffset = CGSizeMake(0.5, 0.5);
+    view.layer.shadowRadius = 1.0;
+    view.layer.shadowOpacity = 0.25;
+    view.layer.rasterizationScale = [[UIScreen mainScreen] scale];
+    view.layer.shouldRasterize = YES;
+}
+
+-(void) addShadowPathToView: (UIView *) view {
+    CGRect shadowFrame = view.bounds;
+    CGPathRef shadowPath = [UIBezierPath bezierPathWithRoundedRect:shadowFrame cornerRadius:view.layer.cornerRadius].CGPath;
+    view.layer.shadowPath = shadowPath;
+}
+
 
 @end

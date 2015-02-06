@@ -2,6 +2,7 @@
 #import "AppDelegate.h"
 #import "STTwitter.h"
 #import "HelpViewController.h"
+#import "Constants.h"
 
 #define FONT_SIZE 14.0f
 #define CELL_CONTENT_WIDTH 320.0f
@@ -34,12 +35,19 @@
                 NSDateFormatter *df = [[NSDateFormatter alloc] init];
                 [df setDateFormat:@"eee MMM dd HH:mm:ss ZZZZ yyyy"];
                 NSDate *date = [df dateFromString:[status objectForKey: @"created_at"]];
-                if ([self isSameDay:date andDate:[NSDate date]]){
+                if ([self isLessThanHours:24 date:date andDate:[NSDate date]]){
+                    
                     [df setDateFormat:@"HH:mm a"];
+                //if ([self isSameDay:date andDate:[NSDate date]]){
                     NSString *dateStr = [df stringFromDate:date];
                     NSString *text = [status objectForKey: @"text"];
                     
-                    NSString *tweet = [NSString stringWithFormat:@"%@\n%@", dateStr,text];
+                    
+                    if (![self isSameDay:date andDate:[NSDate date]]) {
+                        dateStr = [dateStr stringByAppendingString:@" (Yesterday)"];
+                    }
+                    NSString *tweet;
+                    tweet = [NSString stringWithFormat:@"%@\n%@", dateStr,text];
                     //array object at 0 = text
                     //array object at 1 = date
                     //                    NSArray *statusAndDate = [NSArray arrayWithObjects:text, dateStr, nil];
@@ -53,7 +61,7 @@
                 [self.refreshControl endRefreshing];
                 
                 if ([tweets count] <= 0) {
-                    self.tweets = [NSArray arrayWithObject:@"No tweets from @BUShuttle today"];
+                    self.tweets = [NSArray arrayWithObject:@"No tweets from @BUShuttle in the last 24 hours"];
                 }
             }];
             
@@ -250,6 +258,16 @@
         
     }
     
+}
+
+-(CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return kBUTTabBarHeight;
+}
+
+-(UIView*) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, kBUTTabBarHeight)];
+    footer.backgroundColor = self.tableView.backgroundColor;
+    return footer;
 }
 
 /*

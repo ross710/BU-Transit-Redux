@@ -53,8 +53,8 @@
 -(void) viewWillAppear:(BOOL)animated {
     //Flip switch
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    if ([prefs objectForKey:kShowMapByDefault]) {
-        if ([[prefs objectForKey:kShowMapByDefault] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+    if ([prefs objectForKey:kBUTShowMapByDefault]) {
+        if ([[prefs objectForKey:kBUTShowMapByDefault] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
             [self.onLaunchSwitch setOn:YES animated:NO];
 
         } else {
@@ -142,7 +142,7 @@
     
 
     if (self.onLaunchSwitch.isOn) {
-        [prefs setObject:[NSNumber numberWithBool:YES] forKey:kShowMapByDefault];
+        [prefs setObject:[NSNumber numberWithBool:YES] forKey:kBUTShowMapByDefault];
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice"
                                                         message:@"BU Transit will show the Map View by default on launch now."
@@ -151,7 +151,7 @@
                                               otherButtonTitles:nil];
         [alert show];
     } else {
-        [prefs setObject:[NSNumber numberWithBool:NO] forKey:kShowMapByDefault];
+        [prefs setObject:[NSNumber numberWithBool:NO] forKey:kBUTShowMapByDefault];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice"
                                                         message:@"BU Transit will show the List View by default on launch now."
                                                        delegate:self

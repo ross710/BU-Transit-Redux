@@ -51,9 +51,19 @@
                                              selector:@selector(arrivalEstimatesUpdated:)
                                                  name:@"arrivalEstimatesUpdated"
                                                object:nil];
+    
+//    self.refreshControl = [[UIRefreshControl alloc] init];
+//    self.refreshControl.backgroundColor = [UIColor redColor];
+//    self.refreshControl.tintColor = [UIColor whiteColor];
+//    [self.refreshControl addTarget:self
+//                            action:@selector(updateData:)
+//                  forControlEvents:UIControlEventValueChanged];
+    
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
     });
+    
     
     
 
@@ -85,6 +95,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) updateData:(id) sender {
+//    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data"];
+    
 }
 
 #pragma mark - nsnotification
@@ -125,7 +140,7 @@
     return [[BUT_Backend sharedInstance].stops count];
 }
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 145.0;
+    return 165.0;
 }
 
 
@@ -134,12 +149,14 @@
     static NSString *CellIdentifier = @"ListCell";
     ListCell *cell = (ListCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Configure the cell...
-    
-    if (cell == nil) {
-        cell =  [[ListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        
+  
+    if (cell == nil)
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ListCell" owner:self options:nil];
+        cell = (ListCell *)[nib objectAtIndex:0];
     }
+   
+   
     NSDictionary *stop = [[BUT_Backend sharedInstance].stops objectAtIndex:indexPath.row];
     cell.stopName.text = [stop objectForKey:@"name"];
     
@@ -147,10 +164,39 @@
     NSDictionary *arrivalEstimate = [[BUT_Backend sharedInstance].arrivalEstimates objectForKey:[stop objectForKey:@"stop_id"]];
     
     cell.timeAway.text = [Utilities minutesFromArrivalEstimate:arrivalEstimate];
+    
+    
+    cell.busImage.tintColor = [UIColor blackColor];
 
+    
+    
+//    NSDictionary *vehicle = [[BUT_Backend sharedInstance].vehicles objectForKey:[arrivalEstimate objectForKey:@"stop_id"]];
+//    
+//    cell.busInfo.text = [NSString stringWithFormat:@"%@ (%@)", [Utilities busTypeString:]]
+
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        UIImage *busImage;
+        
+        busImage = [[UIImage imageNamed:@"BUT_SmallBusIcon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+
+            cell.busImage.image = busImage;
+//        });
+//    });
+    
+
+ 
     return cell;
 }
 
+-(CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return kBUTTabBarHeight;
+}
 
-
+-(UIView*) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, kBUTTabBarHeight)];
+    footer.backgroundColor = self.tableView.backgroundColor;
+    return footer;
+}
 @end

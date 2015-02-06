@@ -11,11 +11,11 @@
 
 #import "Utilities.h"
 
-static double const cTabBarHeight = 49;
+static double const kBUTTabBarHeight = 49;
 
 
-static NSString * const kMAClickButtonToEditSpotKey = @"Click meter button to edit spot";
 
-static NSString * const kShowMapByDefault = @"kShowMapByDefault";
+static NSString * const kBUTShowMapByDefault = @"kShowMapByDefault";
+static NSString * const kBUTBusTypeString = @"kBusTypeString";
 
 #endif

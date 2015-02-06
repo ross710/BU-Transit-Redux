@@ -9,9 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @interface ListCell : UITableViewCell
-@property (nonatomic) UILabel *stopName;
-@property (nonatomic) UILabel *timeAway;
-@property (nonatomic) UILabel *inOrOutBound;
-@property (nonatomic) UILabel *busType;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *inOrOutbound;
+
+@property (weak, nonatomic) IBOutlet UILabel *busInfo;
+@property (weak, nonatomic) IBOutlet UIImageView *busImage;
+@property (weak, nonatomic) IBOutlet UILabel *stopName;
+@property (weak, nonatomic) IBOutlet UILabel *timeAway;
+@property (weak, nonatomic) IBOutlet UIView *innerView;
+@property (weak, nonatomic) IBOutlet UIView *timeBackground;
 
 @end

@@ -26,7 +26,7 @@
     
     [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTranslucent:NO];
-    
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor darkGrayColor]}];
     
     [BUT_Backend sharedInstance];
     [BUT_Backend getStopsWithBlock:^(void) {
@@ -35,7 +35,7 @@
     [BUT_Backend getVehiclesWithBlock:nil];
 
 
-    [self registerForNotifications];
+//    [self registerForNotifications];
     // Override point for customization after application launch.
     return YES;
 }

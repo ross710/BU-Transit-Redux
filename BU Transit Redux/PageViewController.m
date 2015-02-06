@@ -50,9 +50,9 @@ static const NSInteger indexSettings = 4;
     //Tabbar
     CGRect screenFrame = [UIScreen mainScreen].bounds;
     self.tabBar = [[UITabBar alloc] initWithFrame:CGRectMake(0,
-                                                             screenFrame.size.height-cTabBarHeight,
+                                                             screenFrame.size.height-kBUTTabBarHeight,
                                                              screenFrame.size.width,
-                                                             cTabBarHeight)];
+                                                             kBUTTabBarHeight)];
     [self.view addSubview:self.tabBar];
     UITabBarItem *schedule = [[UITabBarItem alloc] initWithTitle:@"Schedule"
                                                            image:[UIImage imageNamed:@"BUT_ScheduleIcon.png"]
@@ -92,8 +92,8 @@ static const NSInteger indexSettings = 4;
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     
 
-    if ([prefs objectForKey:kShowMapByDefault]) {
-        if ([[prefs objectForKey:kShowMapByDefault] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+    if ([prefs objectForKey:kBUTShowMapByDefault]) {
+        if ([[prefs objectForKey:kBUTShowMapByDefault] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
             [self setViewControllers:@[controller3] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:^(BOOL finished){}];
             [self.tabBar setSelectedItem:map];
 
@@ -119,7 +119,7 @@ static const NSInteger indexSettings = 4;
     self.view.frame = CGRectMake(self.view.frame.origin.x,
                                                         self.view.frame.origin.y + 200,
                                                         self.view.frame.size.width,
-                                                        self.view.frame.size.height-cTabBarHeight);
+                                                        self.view.frame.size.height-kBUTTabBarHeight);
 
     // Do any additional setup after loading the view.
 }

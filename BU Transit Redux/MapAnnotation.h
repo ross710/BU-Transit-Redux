@@ -21,6 +21,8 @@ enum BUT_AnnotationType : NSUInteger {
 
 @interface MapAnnotation : NSObject<MKAnnotation>
 @property (nonatomic) CLLocationCoordinate2D location;
+@property (nonatomic) CLLocationCoordinate2D coordinate;
+
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *objId;
 @property (nonatomic) NSInteger type;
@@ -31,5 +33,10 @@ enum BUT_AnnotationType : NSUInteger {
               name:(NSString*)name
                 objectId:(NSString*)objectId
           location:(CLLocationCoordinate2D)location;
-- (void) setCoordinate:(CLLocationCoordinate2D)newCoordinate;
+
+- (id)initWithType:(NSInteger) type
+              name:(NSString*)name
+          objectId:(NSString*)objectId
+          location:(CLLocationCoordinate2D)location
+              info:(NSDictionary *) info;
 @end
